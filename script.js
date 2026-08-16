@@ -1,16 +1,30 @@
 const amulets = [
   "Ant Amulet",
+  "Silver Ant Amulet",
+  "Gold Ant Amulet",
+  "Diamond Ant Amulet",
+  "Supreme Ant Amulet",
   "King Beetle Amulet",
   "Moon Amulet",
   "Stick Bug Amulet",
+  "Silver Stick Bug Amulet",
+  "Gold Stick Bug Amulet",
+  "Diamond Stick Bug Amulet",
+  "Star Amulet",
   "Silver Star Amulet",
   "Gold Star Amulet",
   "Diamond Star Amulet",
   "Supreme Star Amulet",
   "Shell Amulet",
+  "Silver Shell Amulet",
+  "Gold Shell Amulet",
+  "Diamond Shell Amulet",
   "Supreme Shell Amulet",
   "Cog Amulet",
-  "Snowflake Amulet"
+  "Silver Cog Amulet",
+  "Gold Cog Amulet",
+  "Diamond Cog Amulet",
+  "Supreme Cog Amulet",
 ];
 
 const gear = [
