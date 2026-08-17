@@ -28,8 +28,6 @@ const amulets = [
 ];
 
 const gear = [
-  "Basic Boots",
-  "Hiking Boots",
   "Beekeeper's Boots",
   "Beekeeper's Mask",
   "Mondo Belt Bag",
@@ -40,12 +38,6 @@ const gear = [
   "Fire Mask",
   "Demon Mask",
   "Diamond Mask",
-  "Propeller Hat",
-  "Rake",
-  "Magnet",
-  "Vacuum",
-  "Pollen Pallet",
-  "Porcelain Backpack",
   "Honeycomb Belt",
   "Coconut Canister",
   "Coconut Clogs",
