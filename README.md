@@ -1,4 +1,3 @@
-GO TO:
-https://zzmbe.github.io/zzmbe-s-Hive-Guide-2.0/
+DOWNLOAD: index and open directly in your browser
 Enter your details
 Copy YOUR personalized Bee Swarm guide
