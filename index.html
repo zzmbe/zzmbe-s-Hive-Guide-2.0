@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>zzmbeHive</title><link rel="stylesheet" href="style.css"></head><body>
+<header><b>🐝 zzmbe's Hive Guide 2.0</b><a href="#builder">Guide Builder</a></header><main>
+<section class="hero"><small>BEE SWARM SIMULATOR</small><h1>Your hive.<br><span>Your next move.</span></h1><p>Build a detailed account profile and generate a personalized progression guide.</p><a class="btn" href="#builder">Build My Guide →</a></section>
+<section id="builder" class="panel"><div class="top"><div><small>ACCOUNT BUILDER</small><h2>Your profile</h2></div><button id="clear">Clear all</button></div>
+<div class="grid">
+<label>Number of bees<input id="slots" type="number" value="25" min="1" max="50"></label>
+<label>Average bee level<input id="level" type="number" value="10" min="1" max="18"></label>
+<label>Tickets<input id="tickets" type="number" placeholder="e.g. 2500"></label>
+<label>Stingers<input id="stingers" type="number" placeholder="e.g. 80"></label>
+<label>Tabby Love<input id="tabbyLove" type="number" placeholder="e.g. 500"></label>
+<label>Polar Power<input id="polar" type="number" placeholder="e.g. 30"></label>
+<label>Gifted bees<input id="gifted" type="number" placeholder="e.g. 15"></label><label>Honey<input id="honey" placeholder="e.g. 250B"></label></div>
+<div class="toggles"><label><input id="p2w" type="checkbox"> P2W / Robux purchases</label><label><input id="blackBear" type="checkbox"> Black Bear questline complete</label><label><input id="science" type="checkbox"> Scientific Advancement complete</label></div>
+<h3>Amulets</h3><div id="amulets" class="chips"></div>
+<h3>Gear</h3><div id="gear" class="chips"></div>
+<h3>Bees</h3><input id="beeSearch" class="search" placeholder="Search bees..."><div id="bees" class="bees"></div>
+<button id="generate" class="btn full">Generate My Guide</button></section>
+<section id="result" class="panel hidden"><div class="top"><div><small>YOUR RESULT</small><h2>Personalized guide</h2></div><button id="copy">Copy Guide</button></div><div id="guide"></div></section>
+</main><footer>zzmbeHive • ~PERSONALIZED~ Bee Swarm Simulator guide</footer><script src="script.js"></script></body></html>
