@@ -24,7 +24,7 @@ const amulets = [
   "Silver Cog Amulet",
   "Gold Cog Amulet",
   "Diamond Cog Amulet",
-  "Supreme Cog Amulet",
+  "Supreme Cog Amulet"
 ];
 
 const gear = [
@@ -66,7 +66,6 @@ const bees = [
   "Crimson","Gummy","Photon","Tabby","Vicious","Festive","Bear",
   "Digital","Windy","Fuzzy","Precise","Vector","Spicy","Tadpole",
   "Buoyant",
-
   "Gifted Basic","Gifted Bomber","Gifted Brave","Gifted Bumble",
   "Gifted Cool","Gifted Hasty","Gifted Looker","Gifted Rad",
   "Gifted Rascal","Gifted Stubborn","Gifted Bucko","Gifted Commander",
@@ -87,6 +86,11 @@ const sel = {
   bees: new Set()
 };
 
+
+/* =========================
+   BUTTON CREATION
+========================= */
+
 function createChip(name, container, set, className = "chip") {
   const button = document.createElement("button");
 
@@ -94,21 +98,41 @@ function createChip(name, container, set, className = "chip") {
   button.className = className;
   button.textContent = name;
 
-  button.addEventListener("click", () => {
+  // Restore selected state whenever the button is created
+  if (set.has(name)) {
+    button.classList.add("active");
+    button.setAttribute("aria-pressed", "true");
+  } else {
+    button.setAttribute("aria-pressed", "false");
+  }
+
+  button.addEventListener("click", function () {
     if (set.has(name)) {
+      // Deselect
       set.delete(name);
       button.classList.remove("active");
+      button.setAttribute("aria-pressed", "false");
     } else {
+      // Select
       set.add(name);
       button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
     }
   });
 
   container.appendChild(button);
 }
 
+
+/* =========================
+   RENDER BUTTONS
+========================= */
+
 function chips(arr, selector, set) {
   const container = document.querySelector(selector);
+
+  if (!container) return;
+
   container.innerHTML = "";
 
   arr.forEach(name => {
@@ -116,8 +140,11 @@ function chips(arr, selector, set) {
   });
 }
 
+
 function renderBeeButtons(filter = "") {
   const container = document.querySelector("#bees");
+
+  if (!container) return;
 
   container.innerHTML = "";
 
@@ -127,14 +154,13 @@ function renderBeeButtons(filter = "") {
 
   filtered.forEach(name => {
     createChip(name, container, sel.bees, "bee");
-
-    const button = container.lastElementChild;
-
-    if (sel.bees.has(name)) {
-      button.classList.add("active");
-    }
   });
 }
+
+
+/* =========================
+   INITIALIZE
+========================= */
 
 function initializeButtons() {
   chips(amulets, "#amulets", sel.amulets);
@@ -142,18 +168,18 @@ function initializeButtons() {
   renderBeeButtons();
 }
 
+
+/* =========================
+   CLEAR ALL
+========================= */
+
 function clearSelections() {
-  // Clear all selected data
+  // Clear all selected sets
   sel.amulets.clear();
   sel.gear.clear();
   sel.bees.clear();
 
-  // Clear visual active states
-  document.querySelectorAll(".active").forEach(button => {
-    button.classList.remove("active");
-  });
-
-  // Reset text/number inputs
+  // Reset inputs
   document.querySelector("#tickets").value = "";
   document.querySelector("#stingers").value = "";
   document.querySelector("#tabbyLove").value = "";
@@ -161,34 +187,44 @@ function clearSelections() {
   document.querySelector("#gifted").value = "";
   document.querySelector("#honey").value = "";
 
-  // Reset default values
+  // Reset defaults
   document.querySelector("#slots").value = 25;
-  document.querySelector("#level").value = 8;
+  document.querySelector("#level").value = 10;
 
   // Reset checkboxes
   document.querySelector("#p2w").checked = false;
   document.querySelector("#blackBear").checked = false;
   document.querySelector("#science").checked = false;
 
-  // Clear bee search
+  // Reset search
   document.querySelector("#beeSearch").value = "";
 
-  // Rebuild buttons completely
+  // Rebuild everything
   chips(amulets, "#amulets", sel.amulets);
   chips(gear, "#gear", sel.gear);
   renderBeeButtons("");
 
-  // Hide generated result
+  // Hide result
   document.querySelector("#result").classList.add("hidden");
 
   // Reset copy button
   document.querySelector("#copy").textContent = "Copy Guide";
 }
 
+
+/* =========================
+   HELPER
+========================= */
+
 const has = name =>
   sel.gear.has(name) ||
   sel.bees.has(name) ||
   sel.amulets.has(name);
+
+
+/* =========================
+   INPUTS / EVENTS
+========================= */
 
 const slotsEl = document.querySelector("#slots");
 
@@ -197,6 +233,11 @@ document.querySelector("#beeSearch").addEventListener("input", event => {
 });
 
 document.querySelector("#clear").addEventListener("click", clearSelections);
+
+
+/* =========================
+   GENERATE GUIDE
+========================= */
 
 document.querySelector("#generate").addEventListener("click", () => {
   const slots = Number(slotsEl.value) || 25;
@@ -359,10 +400,16 @@ document.querySelector("#generate").addEventListener("click", () => {
     .join("");
 
   document.querySelector("#result").classList.remove("hidden");
+
   document.querySelector("#result").scrollIntoView({
     behavior: "smooth"
   });
 });
+
+
+/* =========================
+   COPY GUIDE
+========================= */
 
 document.querySelector("#copy").addEventListener("click", async () => {
   const text =
@@ -376,5 +423,9 @@ document.querySelector("#copy").addEventListener("click", async () => {
   document.querySelector("#copy").textContent = "Copied!";
 });
 
-// Initial setup
+
+/* =========================
+   START
+========================= */
+
 initializeButtons();
